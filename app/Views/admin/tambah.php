@@ -8,17 +8,24 @@
     <div class="container mt-5">
         <div class="col-md-6 mx-auto">
             <div class="card shadow">
-                <div class="card-header bg-primary text-white">
-                    <h4 class="mb-0">Form Tambah Paket</h4>
-                </div>
+                <div class="card-header text-white" style="background-color: #0a6b4a;">
+    <h4 class="mb-0 fw-bold">Form Tambah Paket</h4>
+</div>
                 <div class="card-body">
                     <form action="/admin/simpan" method="post">
                         <div class="mb-3">
-                            <label>Nama Travel</label>
-                            <input type="text" name="nama_travel" class="form-control" required>
+                            <label class="form-label fw-bold">Nama Travel / Penyelenggara</label>
+                            <select name="travel_id" class="form-select" required>
+    <option value="">-- Pilih Biro Travel --</option>
+    <?php foreach ($travel as $t): ?>
+        <option value="<?= $t['id']; ?>">
+            <?= $t['nama_travel']; ?>
+        </option>
+    <?php endforeach; ?>
+</select>
                         </div>
                         <div class="mb-3">
-                            <label>Nama Paket</label>
+                            <label class="form-label fw-bold">Nama Paket</label>
                             <input type="text" name="nama_paket" class="form-control" required>
                         </div>
                         <div class="mb-3">

@@ -28,55 +28,68 @@ class Admin extends BaseController
         return view('admin/index', $data); // Sesuaikan dengan nama view admin kamu
     }
 
+    // 🛠️ 1. FUNGSI TAMBAH SUDAH DIPERBAIKI (Membawa data travel ke view tambah.php)
     public function tambah()
     {
-        return view('admin/tambah');
+        $travelModel = new \App\Models\TravelModel();
+        
+        $data['travel'] = $travelModel->findAll();
+        $data['judul']  = "Tambah Paket Umroh Baru";
+
+        return view('admin/tambah', $data);
     }
 
+    // 🛠️ 2. FUNGSI SIMPAN SUDAH DIPERBAIKI (Menyimpan travel_id, bukan nama_travel teks manual)
     public function simpan()
     {
         $model = new \App\Models\PaketModel();
 
         // Mengambil data dari form post
         $model->save([
-            'nama_travel'   => $this->request->getPost('nama_travel'),
+            'travel_id'     => $this->request->getPost('travel_id'), // Menggunakan ID travel relasi
             'nama_paket'    => $this->request->getPost('nama_paket'),
             'harga'         => $this->request->getPost('harga'),
             'durasi'        => $this->request->getPost('durasi'),
             'hotel_bintang' => $this->request->getPost('hotel_bintang'),
-            'includes'     => $this->request->getPost('includes'), // 🛠️ PASTIKAN BARIS INI ADA
+            'includes'      => $this->request->getPost('includes'), 
         ]);
 
         return redirect()->to('/admin');
     }
 
     public function hapus($id)
-    {
-        $model = new \App\Models\PaketModel();
-        $model->delete($id);
-        return redirect()->to('/admin');
-    }
+{
+    // Ganti 'PaketModel' sesuai nama model paket umroh Anda
+    $paketModel = new \App\Models\PaketModel(); 
+    
+    // Eksekusi hapus data
+    $paketModel->delete($id);
+
+    // CRITICAL: Set flashdata dengan key 'success' agar dibaca oleh view
+    session()->setFlashdata('success', 'Data paket umroh berhasil dihapus!');
+
+    return redirect()->to('/admin'); // Sesuaikan dengan route halaman utama admin Anda
+}
 
     public function paket_edit($id = null)
     {
         if ($id === null) {
-            return redirect()->to(base_url('admin/paket'))->with('error', 'ID Paket tidak ditemukan.');
+            return redirect()->to(base_url('admin'))->with('error', 'ID Paket tidak ditemukan.');
         }
 
         $paketModel = new \App\Models\PaketModel();
         $travelModel = new \App\Models\TravelModel();
 
-        //Ambil data paket berdasarkan ID
+        // Ambil data paket berdasarkan ID
         $detailPaket = $paketModel->find($id);
 
         if (!$detailPaket) {
             throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound("Paket tidak ditemukan");
         }
 
-        // 🛠️ KITA KIRIM DUA-DUANYA BIAR AMAN DAN GA EROR LAGI:
-        $data['p']     = $detailPaket; // Untuk jaga-jaga kode baru
-        $data['paket'] = $detailPaket; // MASUKKAN INI (Untuk menyembuhkan eror baris 18 di view)
-
+        // Kirim data paket dan daftar travel untuk pilihan dropdown select
+        $data['paket']  = $detailPaket;
+        $data['p']      = $detailPaket; // Cadangan variabel jika view memakai $p
         $data['travel'] = $travelModel->findAll();
         $data['judul']  = "Edit Paket Umroh";
 
@@ -86,18 +99,22 @@ class Admin extends BaseController
     public function update($id)
     {
         $model = new \App\Models\PaketModel();
+        
+        // Memproses update data ke database
         $model->update($id, [
-            'nama_travel'   => $this->request->getPost('nama_travel'),
+            'travel_id'     => $this->request->getPost('travel_id'),
             'nama_paket'    => $this->request->getPost('nama_paket'),
             'harga'         => $this->request->getPost('harga'),
             'durasi'        => $this->request->getPost('durasi'),
             'hotel_bintang' => $this->request->getPost('hotel_bintang'),
-            'includes'     => $this->request->getPost('includes'), // 🛠️ PASTIKAN BARIS INI ADA
+            'includes'      => $this->request->getPost('includes'), // 🛠️ Menyimpan fasilitas/includes yang baru diketik
         ]);
-        return redirect()->to('/admin');
+
+        // Kembali ke halaman admin dengan membawa NOTIFIKASI BERHASIL
+        return redirect()->to('/admin')->with('success', 'Data paket umroh berhasil diperbarui!');
     }
 
-        // ================= CRUD TRAVEL =================
+    // ================= CRUD TRAVEL =================
 
     // 1. Tampilkan Daftar Travel
     public function travel_index()
@@ -118,9 +135,9 @@ class Admin extends BaseController
             'nama_travel' => $this->request->getPost('nama_travel'),
             'kota_asal'   => $this->request->getPost('kota_asal'),
             'sk_kemenag'  => $this->request->getPost('sk_kemenag'),
-            'logo_travel' => '', // Bisa dikembangkan untuk upload foto nanti
-            'nama_pt'       => $this->request->getPost('nama_pt'),       // <-- TAMBAHKAN INI
-            'alamat_travel' => $this->request->getPost('alamat_travel')  // <-- TAMBAHKAN INI
+            'logo_travel' => '', 
+            'nama_pt'       => $this->request->getPost('nama_pt'),       
+            'alamat_travel' => $this->request->getPost('alamat_travel')  
         ]);
         return redirect()->to('/admin/travel');
     }
@@ -133,8 +150,8 @@ class Admin extends BaseController
             'nama_travel' => $this->request->getPost('nama_travel'),
             'kota_asal'   => $this->request->getPost('kota_asal'),
             'sk_kemenag'  => $this->request->getPost('sk_kemenag'),
-            'nama_pt'       => $this->request->getPost('nama_pt'),       // <-- TAMBAHKAN INI
-            'alamat_travel' => $this->request->getPost('alamat_travel')  // <-- TAMBAHKAN INI
+            'nama_pt'       => $this->request->getPost('nama_pt'),       
+            'alamat_travel' => $this->request->getPost('alamat_travel')  
         ]);
         return redirect()->to('/admin/travel');
     }
