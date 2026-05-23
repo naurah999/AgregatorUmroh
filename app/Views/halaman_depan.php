@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><?= esc($judul); ?></title>
+    <!-- Cukup load CSS sekali di sini -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
@@ -109,11 +114,7 @@
             margin-right: 8px;
         }
     </style>
-    <meta charset="UTF-8">
-    <title><?= $judul; ?></title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-</head>
+ </head>
 
 <body class="bg-light">
     <nav class="navbar navbar-expand-lg navbar-dark sticky-top" style="background-color: #0b5345;">
@@ -121,8 +122,8 @@
         <a class="navbar-brand fw-bold" href="/">
             <i class="fas fa-kaaba text-warning me-2"></i>UmrohJatim.com
         </a>
-        <button class="navbar-expand-lg navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-            <span class="navbar-toggler-icon"></span>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
         </button>
         
         <div class="collapse navbar-collapse" id="navbarNav">
@@ -138,13 +139,13 @@
             </li>
         </ul>
 
-            <div class="d-flex align-items-center">
-                <?php if (session()->get('logged_in')) : ?>
-                    <div class="dropdown">
-                        <button class="btn btn-warning dropdown-toggle btn-sm fw-bold rounded-pill px-3" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="fas fa-user-circle me-1"></i> Halo, <?= session()->get('nama'); ?>
-                        </button>
-                        <ul class="dropdown-menu dropdown-menu-end shadow border-0" aria-labelledby="dropdownMenuButton">
+        <div class="d-flex align-items-center">
+            <?php if (session()->get('logged_in')) : ?>
+                <div class="dropdown">
+                    <button class="btn btn-warning dropdown-toggle btn-sm fw-bold rounded-pill px-3" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fas fa-user-circle me-1"></i> Halo, <?= esc(session()->get('nama')); ?>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end shadow border-0" aria-labelledby="dropdownMenuButton">
                             <?php if (session()->get('role') == 'admin') : ?>
                                 <li><a class="dropdown-menu-item dropdown-item fw-bold text-success" href="/admin"><i class="fas fa-user-shield me-2"></i>Panel Admin</a></li>
                                 <li><hr class="dropdown-divider"></li>
@@ -161,13 +162,14 @@
         </div>
     </div>
     </nav>
+    <!-- Hero Section -->
     <div class="hero-section text-center">
         <div class="container">
             <h1 class="display-5 mb-3 fw-bold">Agregator Umroh Jawa Timur</h1>
             <p class="lead opacity-75">Cari paket terbaik atau jelajahi paket langsung dari Biro Travel resmi pilihan Anda.</p>
         </div>
     </div>
-
+    <!-- Main Content -->
     <div class="container">
         <div class="card filter-card mb-4 shadow-sm">
             <div class="card-body p-4">
@@ -175,7 +177,7 @@
                 <form action="/" method="get" class="row g-3">
                     <div class="col-md-5">
                         <label class="form-label">Maksimal Budget (Rp)</label>
-                        <input type="number" name="budget" class="form-control" placeholder="Contoh: 35000000" value="<?= isset($_GET['budget']) ? $_GET['budget'] : '' ?>">
+                        <input type="number" name="budget" class="form-control" placeholder="Contoh: 35000000" value="<?= isset($_GET['budget']) ? esc($_GET['budget']) : '' ?>">
                     </div>
                     <div class="col-md-5">
                         <label class="form-label">Durasi (Hari)</label>
@@ -186,14 +188,14 @@
                         </select>
                     </div>
                     <div class="col-md-2 d-flex align-items-end">
-                        <button type="submit" class="btn btn-success w-100 fw-bold">Cari Paket</button>
+                        <button type="submit" class="btn btn-success w-100 fw-bold" style="background-color: #0b5345; border-color: #0b5345;">Cari Paket</button>
                     </div>
                 </form>
             </div>
         </div>
-
+        <!-- Biro Travel Section -->
         <section id="biro-travel" class="py-5">
-            <h4 class="fw-bold mb-2 text-dark"><i class="fas fa-building text-success me-2"></i>Biro Travel Resmi Jawa Timur</h4>
+            <h4 class="fw-bold mb-2 text-dark"><i class="fas fa-building text-success me-2" style="color: #0b5345 !important;"></i>Biro Travel Resmi Jawa Timur</h4>
             <p class="text-muted small mb-4">Pilih biro travel untuk melihat profil legalitas dan daftar paket khusus yang mereka sediakan.</p>
             
             <div class="row row-cols-2 row-cols-md-4 g-3">
@@ -203,11 +205,11 @@
                             <div class="card h-100 text-center border-0 shadow-sm p-3 bg-white" style="border-radius: 12px; transition: transform 0.2s;">
                                 <div class="card-body p-2">
                                     <div class="mb-3 mx-auto d-flex align-items-center justify-content-center bg-light text-success rounded-circle" style="width: 60px; height: 60px;">
-                                        <i class="fas fa-mosque fa-lg"></i>
+                                        <i class="fas fa-mosque fa-lg" style="color: #0b5345;"></i>
                                     </div>
-                                    <h6 class="fw-bold text-dark mb-1"><?= $t['nama_travel']; ?></h6>
+                                    <h6 class="fw-bold text-dark mb-1"><?= esc($t['nama_travel']); ?></h6>
                                     <span class="badge bg-secondary-subtle text-secondary px-2 py-1" style="font-size: 0.75rem;">
-                                        <i class="fas fa-map-marker-alt me-1"></i><?= $t['kota_asal']; ?>
+                                        <i class="fas fa-map-marker-alt me-1"></i><?= esc($t['kota_asal']); ?>
                                     </span>
                                 </div>
                             </div>
@@ -219,58 +221,59 @@
 
         <hr class="my-5 opacity-25">
 
-        <h4 class="fw-bold mb-4" style="color: #0b5345;"><i class="fas fa-box-open me-2"></i>Rekomendasi Paket Umroh Tersedia</h4>
         
+
     <section id="paket-rekomendasi" class="py-5 bg-light">
+        <h4 class="fw-bold mb-4" style="color: #0b5345;"><i class="fas fa-box-open me-2"></i>Rekomendasi Paket Umroh Tersedia</h4>
         <div class="container">
-        <div class="row g-4">
-            
+        <div class="row g-4">       
             <?php foreach($paket as $p): ?>
-            <div class="col-12 col-md-4">
-                
-                <div class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden">
+            <div class="col-12 col-md-4">           
+                <div class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden paket-card">
                     <div class="card-body p-4">
                         
-                        <h5 class="fw-bold text-success mb-1"><?= $p['nama_paket']; ?></h5>
+                        <h5 class="fw-bold text-success mb-1" style="color: #117a65 !important;"><?= esc($p['nama_paket']); ?></h5>
                         
                         <p class="text-muted small mb-3">
-                            <i class="fas fa-building me-1"></i> <?= $p['nama_travel']; ?> (<?= $p['kota_asal']; ?>)
+                            <i class="fas fa-building me-1"></i> <?= esc($p['nama_travel']); ?> (<?= esc($p['kota_asal']); ?>)
                         </p>
                         
                         <div class="mb-3">
-                            <span class="badge bg-success-subtle text-success border border-success-subtle px-3 py-2 fs-6 fw-bold rounded-3">
+                            <span class="badge bg-success-subtle text-success border border-success-subtle px-3 py-2 fs-6 fw-bold rounded-3"style="color: #0b5345 !important; background-color: rgba(11,83,69,0.1) !important;">
                                 Rp<?= number_format($p['harga'], 0, ',', '.'); ?>
                             </span>
                         </div>
                         
                         <div class="small text-dark mb-4">
                             <div class="mb-2">
-                                <i class="fas fa-calendar-alt text-warning me-2"></i> <?= $p['durasi']; ?> Hari
+                                <i class="fas fa-calendar-alt text-warning me-2" style="color: #d4af37 !important;"></i> <?= esc($p['durasi']); ?> Hari
                             </div>
                             <div>
-                                <i class="fas fa-hotel text-warning me-2"></i> 
+                                <i class="fas fa-hotel text-warning me-2" style="color: #d4af37 !important;"></i> 
                                 <?php for($s = 1; $s <= $p['hotel_bintang']; $s++): ?> 
-                                <i class="fas fa-star text-warning"></i>
+                                <i class="fas fa-star text-warning" style="color: #d4af37 !important;"></i>
                                 <?php endfor; ?>
                             </div>
                         </div>
                         
-                        <a href="/detail_paket/<?= $p['id']; ?>" class="btn btn-outline-success w-100 rounded-pill fw-bold py-2 btn-sm">
+                        <a href="/detail_paket/<?= $p['id']; ?>" class="btn btn-outline-success w-100 rounded-pill fw-bold py-2 btn-sm" style="color: #0b5345; border-color: #0b5345;">
                             <i class="fas fa-search me-1"></i> Lihat Detail
                         </a>
 
                     </div>
                 </div>
 
-            </div> <?php endforeach; ?>
+            </div> 
+            <?php endforeach; ?>
 
-        </div> </div>
+        </div>
     </section>
     </div>
-    <section class="py-5 bg-light border-top border-bottom">
+    <!-- Keunggulan Section -->
+    <section class="py-5 bg-light border-top border-bottom mt-5>"
     <div class="container">
         <div class="row text-center g-4">
-            
+
             <div class="col-md-3 col-sm-6">
                 <div class="p-3">
                     <div class="text-success mb-3" style="font-size: 2.5rem;">
@@ -313,6 +316,7 @@
         </div>
     </div>
     </section>
+    <!-- Footer -->
     <footer class="text-white mt-5 pt-5 pb-4" style="background-color: #073c32;">
     <div class="container text-md-left">
         <div class="row text-md-left">
@@ -332,7 +336,7 @@
                 <h5 class="text-uppercase mb-4 font-weight-bold text-warning fw-bold">Kontak Layanan</h5>
                 <p class="small mb-2 opacity-75"><i class="fas fa-home me-2"></i> Gedung Pusat, Jl. Ahmad Yani No. 12, Surabaya</p>
                 <p class="small mb-2 opacity-75"><i class="fas fa-envelope me-2"></i> bantuan@umrohjatim.com</p>
-                <p class="small mb-2 opacity-75"><i class="fas fa-phone me-2"></i> +62 812-3456-7890</p>
+                <p class="small mb-2 opacity-75"><i class="fas fa-phone me-2"></i> +62 821-1135-7776</p>
             </div>
         </div>
 

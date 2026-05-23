@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\PaketModel;
+use App\Models\TravelModel;
 
 class Admin extends BaseController
 {
@@ -11,8 +12,8 @@ class Admin extends BaseController
     {
         // Jika belum login ATAU role-nya bukan admin, tendang ke beranda
         if (!session()->get('logged_in') || session()->get('role') !== 'admin') {
-            header('Location: ' . base_url('/'));
-            exit();
+            // Menggunakan response redirect bawaan framework, bukan header native PHP
+            throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound("Anda tidak memiliki akses.");
         }
     }
 
@@ -54,27 +55,27 @@ class Admin extends BaseController
             'includes'      => $this->request->getPost('includes'), 
         ]);
 
-        return redirect()->to('/admin');
+        return redirect()->to('/admin')->with('success', 'Data paket umroh berhasil ditambahkan!');
     }
 
     public function hapus($id)
-{
-    // Ganti 'PaketModel' sesuai nama model paket umroh Anda
-    $paketModel = new \App\Models\PaketModel(); 
-    
-    // Eksekusi hapus data
-    $paketModel->delete($id);
+    {
+        // Ganti 'PaketModel' sesuai nama model paket umroh Anda
+        $paketModel = new \App\Models\PaketModel(); 
+        
+        // Eksekusi hapus data
+        $paketModel->delete($id);
 
-    // CRITICAL: Set flashdata dengan key 'success' agar dibaca oleh view
-    session()->setFlashdata('success', 'Data paket umroh berhasil dihapus!');
+        // CRITICAL: Set flashdata dengan key 'success' agar dibaca oleh view
+        session()->setFlashdata('success', 'Data paket umroh berhasil dihapus!');
 
-    return redirect()->to('/admin'); // Sesuaikan dengan route halaman utama admin Anda
-}
+        return redirect()->to('/admin'); // Sesuaikan dengan route halaman utama admin Anda
+    }
 
     public function paket_edit($id = null)
     {
         if ($id === null) {
-            return redirect()->to(base_url('admin'))->with('error', 'ID Paket tidak ditemukan.');
+            return redirect()->to('/admin')->with('error', 'ID Paket tidak ditemukan.');
         }
 
         $paketModel = new \App\Models\PaketModel();
@@ -107,7 +108,7 @@ class Admin extends BaseController
             'harga'         => $this->request->getPost('harga'),
             'durasi'        => $this->request->getPost('durasi'),
             'hotel_bintang' => $this->request->getPost('hotel_bintang'),
-            'includes'      => $this->request->getPost('includes'), // 🛠️ Menyimpan fasilitas/includes yang baru diketik
+            'includes'      => $this->request->getPost('includes'), // Menyimpan fasilitas/includes yang baru diketik
         ]);
 
         // Kembali ke halaman admin dengan membawa NOTIFIKASI BERHASIL
@@ -139,7 +140,7 @@ class Admin extends BaseController
             'nama_pt'       => $this->request->getPost('nama_pt'),       
             'alamat_travel' => $this->request->getPost('alamat_travel')  
         ]);
-        return redirect()->to('/admin/travel');
+        return redirect()->to('/admin/travel')->with('success', 'Data travel berhasil ditambah!');
     }
 
     // 3. Proses Edit Travel
@@ -153,7 +154,7 @@ class Admin extends BaseController
             'nama_pt'       => $this->request->getPost('nama_pt'),       
             'alamat_travel' => $this->request->getPost('alamat_travel')  
         ]);
-        return redirect()->to('/admin/travel');
+        return redirect()->to('/admin/travel')->with('success', 'Data travel berhasil diubah!');
     }
 
     // 4. Proses Hapus Travel
@@ -161,6 +162,6 @@ class Admin extends BaseController
     {
         $travelModel = new \App\Models\TravelModel();
         $travelModel->delete($id);
-        return redirect()->to('/admin/travel');
+        return redirect()->to('/admin/travel')->with('success', 'Data travel berhasil dihapus!');
     }
 }

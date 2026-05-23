@@ -17,31 +17,12 @@
         .badge-harga { background-color: #e8f5e9; color: #2e7d32; font-weight: 600; padding: 5px 10px; border-radius: 5px; }
         
         /* Style Toast Custom */
-        .toast-container-custom {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            z-index: 9999;
-        }
-        .toast-custom {
-            background-color: #d1e7dd;
-            color: #0f5132;
-            border-left: 5px solid #0a6b4a;
-            padding: 15px 25px;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            font-weight: bold;
-            transform: translateY(-20px);
-            opacity: 0;
-            transition: all 0.4s ease;
-        }
-        .toast-custom.show {
-            transform: translateY(0);
-            opacity: 1;
-        }
+        .toast-container-custom { position: fixed; top: 20px; right: 20px; z-index: 9999; }
+        .toast-custom { background-color: #d1e7dd; color: #0f5132; border-left: 5px solid #0a6b4a;
+            padding: 15px 25px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            display: flex; align-items: center; gap: 12px; font-weight: bold; 
+            transform: translateY(-20px); opacity: 0; transition: all 0.4s ease; }
+        .toast-custom.show { transform: translateY(0); opacity: 1;}
     </style>
 </head>
 <body>
@@ -50,9 +31,9 @@
     <div class="container">
         <span class="navbar-brand fw-bold"><i class="fas fa-user-shield me-2"></i>Panel Admin - Agregator</span>
         <div class="d-flex">
-            <a href="/admin" class="btn btn-warning btn-sm me-2"><i class="fas fa-box"></i> Kelola Paket</a>
-            <a href="/admin/travel" class="btn btn-outline-light btn-sm me-3"><i class="fas fa-building"></i> Kelola Travel</a>
-            <a href="/" class="btn btn-sm btn-success"><i class="fas fa-globe"></i> Lihat Web</a>
+            <a href="<?= base_url('admin'); ?>" class="btn btn-warning btn-sm me-2"><i class="fas fa-box"></i> Kelola Paket</a>
+            <a href="<?= base_url('admin/travel'); ?>" class="btn btn-outline-light btn-sm me-3"><i class="fas fa-building"></i> Kelola Travel</a>
+            <a href="<?= base_url('/'); ?>" class="btn btn-sm btn-success"><i class="fas fa-globe"></i> Lihat Web</a>
         </div>
     </div>
 </nav>
@@ -61,7 +42,7 @@
     <div class="card card-admin p-4">
         <div class="d-flex justify-content-between align-items-center mb-4">
             <h5 class="fw-bold mb-0">Kelola Paket Umroh</h5>
-            <a href="/admin/tambah" class="btn btn-tambah shadow-sm">
+            <a href="<?= base_url('admin/tambah'); ?>" class="btn btn-tambah shadow-sm">
                 <i class="fas fa-plus-circle me-2"></i>Tambah Paket Baru
             </a>
         </div>
@@ -85,8 +66,7 @@
                 <tr>
                     <td><?= $no++; ?></td>
                     <td>
-                        <strong><?= $p['nama_paket']; ?></strong>
-                    </td>
+                        <strong><?= $p['nama_paket']; ?></strong></td>
                     <td><?= isset($p['nama_travel']) ? $p['nama_travel'] : '-'; ?></td>
                     <td>Rp <?= number_format($p['harga'], 0, ',', '.'); ?></td>
                     <td><?= $p['durasi']; ?> Hari</td>
@@ -118,7 +98,7 @@
         </div>
     </div>
 </div>
-
+<!-- Toast Success -->
 <?php if (session()->getFlashdata('success')) : ?>
     <div class="toast-container-custom">
         <div id="successToast" class="toast-custom">
@@ -141,7 +121,7 @@
         });
     </script>
 <?php endif; ?>
-
+<!-- Modal Konfirmasi Hapus -->
 <div class="modal fade" id="konfirmasiHapusModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" style="max-width: 400px;">
         <div class="modal-content" style="border-radius: 12px; border: none; box-shadow: 0 4px 20px rgba(0,0,0,0.15);">

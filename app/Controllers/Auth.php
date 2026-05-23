@@ -29,7 +29,7 @@ class Auth extends BaseController
         if ($user) {
             // Cek password (bisa pakai password_verify jika di-hash, 
             // tapi untuk testing simpel kita samakan langsung teksnya)
-            if ($password === $user['password']) {
+            if (password_verify($password, $user['password'])) {
                 
                 // Set data session jika sukses login
                 $sessionData = [
@@ -80,7 +80,7 @@ class Auth extends BaseController
         $dataBaru = [
             'nama'     => $nama,
             'email'    => $email,
-            'password' => $password, // Menyimpan password teks biasa (simpel untuk testing)
+            'password' => password_hash($password, PASSWORD_BCRYPT), // Meng-hash password sebelum disimpan
             'role'     => $role
         ];
 

@@ -35,25 +35,25 @@
                                                                 
                         <div class="mb-3">
                             <label class="form-label fw-bold">Nama Paket</label>
-                            <input type="text" name="nama_paket" class="form-control" value="<?= $paket['nama_paket']; ?>" required>
+                            <input type="text" name="nama_paket" class="form-control" value="<?= old('nama_paket', $paket['nama_paket']); ?>" required>
                         </div>
                         
                         <div class="mb-3">
                             <label class="form-label fw-bold">Harga (Angka saja)</label>
-                            <input type="number" name="harga" class="form-control" value="<?= $paket['harga']; ?>" required>
+                            <input type="number" name="harga" class="form-control" value="<?= old('harga', $paket['harga']); ?>" required>
                         </div>
                         
                         <div class="mb-3">
                             <label class="form-label fw-bold">Durasi (Hari)</label>
-                            <input type="number" name="durasi" class="form-control" value="<?= $paket['durasi']; ?>" required>
+                            <input type="number" name="durasi" class="form-control" value="<?= old('durasi', $paket['durasi']); ?>" required>
                         </div>
                         
                         <div class="mb-3">
                             <label class="form-label fw-bold">Bintang Hotel</label>
                             <select name="hotel_bintang" class="form-select">
-                                <option value="3" <?= $paket['hotel_bintang'] == 3 ? 'selected' : '' ?>>Bintang 3</option>
-                                <option value="4" <?= $paket['hotel_bintang'] == 4 ? 'selected' : '' ?>>Bintang 4</option>
-                                <option value="5" <?= $paket['hotel_bintang'] == 5 ? 'selected' : '' ?>>Bintang 5</option>
+                                <option value="3" <?= old('hotel_bintang', $paket['hotel_bintang'] ) == 3 ? 'selected' : '' ?>>Bintang 3</option>
+                                <option value="4" <?= old('hotel_bintang', $paket['hotel_bintang'] ) == 4 ? 'selected' : '' ?>>Bintang 4</option>
+                                <option value="5" <?= old('hotel_bintang', $paket['hotel_bintang'] ) == 5 ? 'selected' : '' ?>>Bintang 5</option>
                             </select>
                         </div>
 

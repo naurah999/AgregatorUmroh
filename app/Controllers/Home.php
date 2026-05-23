@@ -68,10 +68,11 @@ class Home extends BaseController
     public function detail($id)
     {
         $paketModel = new \App\Models\PaketModel();
+        $travelModel = new \App\Models\TravelModel();
 
         // Ambil detail paket beserta data travelnya menggunakan JOIN
-        $paket = $paketModel->select('paket_umroh.*, travel.nama_travel, travel.kota_asal, travel.sk_kemenag')
-                            ->join('travel', 'travel.id = paket_umroh.travel_id')
+        $paket = $paketModel->select('paket_umroh.*, travel.nama_travel, travel.kota_asal, travel.sk_kemenag, travel.nama_pt, travel.alamat_travel')
+                            ->join('travel', 'travel.id = paket_umroh.travel_id', 'left')
                             ->find($id);
 
         // Jika paket tidak ada di database, tampilkan error 404
@@ -80,8 +81,9 @@ class Home extends BaseController
         }
 
         $data = [
-            'judul' => $paket['nama_paket'] . ' - ' . $paket['nama_travel'],
-            'p'     => $paket
+            'judul'  => "Detail Paket - " . $paket['nama_paket'],
+            'p'      => $paket,
+            'travel' => $paket // Karena sudah di-join, variabel $travel bisa diarahkan ke array yang sama
         ];
 
         return view('detail_paket', $data);

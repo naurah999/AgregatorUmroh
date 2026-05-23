@@ -12,7 +12,7 @@ class PaketModel extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['nama_travel', 'nama_paket', 'harga', 'durasi', 'hotel_bintang', 'includes'];
+    protected $allowedFields    = ['travel_id', 'nama_paket', 'harga', 'durasi', 'hotel_bintang', 'includes'];
 
     protected bool $allowEmptyInserts = false;
     protected bool $updateOnlyChanged = true;
