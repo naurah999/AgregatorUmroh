@@ -56,8 +56,10 @@
                         <th>Nama Biro Travel</th>
                         <th>Harga (Rp)</th>
                         <th>Durasi</th>
-                        <th>Bintang</th> 
-                        <th>Fasilitas</th> 
+                        <th>Bintang</th>  
+                        <th>Maskapai</th>
+                        <th>kota keberangkatan</th>
+                        <th>Fasilitas</th>
                         <th width="15%">Aksi</th>
                     </tr>
                 </thead>
@@ -78,6 +80,8 @@
                             <i class="fas fa-star text-warning" style="font-size: 0.8rem;"></i>
                         <?php endfor; ?>
                     </td>
+                    <td><?= $p['maskapai']; ?></td> 
+                    <td><?= $p['kota_keberangkatan']; ?></td> 
                     <td>
                         <small class="text-muted">
                             <?= !empty($p['includes']) ? mb_strimwidth(str_replace("\n", ", ", $p['includes']), 0, 40, "...") : '-'; ?>

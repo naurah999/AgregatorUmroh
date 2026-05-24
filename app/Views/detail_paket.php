@@ -52,16 +52,21 @@
                                 </h5>
                             </div>
                         </div>
-                        <div class="col-sm-6">
-                            <div class="p-3 bg-light rounded-3">
-                                <small class="text-muted d-block mb-1">Maskapai Penerbangan (Simulasi)</small>
-                                <h5 class="fw-bold mb-0 text-dark"><i class="fas fa-plane text-success me-2"></i>Saudi Arabian Airlines</h5>
+                        <div class="col-md-6 mb-3">
+                            <div class="p-3 bg-light rounded shadow-sm">
+                                <small class="text-muted d-block">Maskapai Penerbangan</small>
+                                <span class="fw-bold fs-5 text-dark">
+                                    <i class="fas fa-plane text-success me-2"></i><?= $p['maskapai'] ?? 'Tidak ditentukan'; ?>
+                                </span>
                             </div>
                         </div>
-                        <div class="col-sm-6">
-                            <div class="p-3 bg-light rounded-3">
-                                <small class="text-muted d-block mb-1">Kota Keberangkatan</small>
-                                <h5 class="fw-bold mb-0 text-dark"><i class="fas fa-map-marker-alt text-success me-2"></i>Juanda, Surabaya</h5>
+
+                        <div class="col-md-6 mb-3">
+                            <div class="p-3 bg-light rounded shadow-sm">
+                                <small class="text-muted d-block">Kota Keberangkatan</small>
+                                <span class="fw-bold fs-5 text-dark">
+                                    <i class="fas fa-map-marker-alt text-success me-2"></i><?= $p['kota_keberangkatan'] ?? 'Tidak ditentukan'; ?>
+                                </span>
                             </div>
                         </div>
                     </div>

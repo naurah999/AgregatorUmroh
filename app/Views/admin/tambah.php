@@ -46,6 +46,14 @@
                                 <option value="5" <?= old('hotel_bintang') == 5 ? 'selected' : ''; ?>>Bintang 5</option>
                             </select>
                         </div>
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Maskapai Penerbangan</label>
+                            <input type="text" name="maskapai" class="form-control" placeholder="Contoh: Saudi Arabian Airlines" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Kota Keberangkatan</label>
+                            <input type="text" name="kota_keberangkatan" class="form-control" placeholder="Contoh: Juanda, Surabaya" required>
+                        </div>
                         <div class="mb-4">
                             <label for="includes" class="form-label fw-bold">Fasilitas Sudah Termasuk (Includes)</label>
                             <textarea class="form-control" id="includes" name="includes" rows="4" placeholder="Contoh: Tiket Pesawat PP, Visa Umroh, Makan 3x Sehari (Gunakan baris baru/enter untuk memisahkan)"><?= old('includes'); ?></textarea>
@@ -54,8 +62,6 @@
                             <a href="<?= base_url('admin'); ?>" class="btn btn-secondary me-2 px-4">Batal</a>
                             <button type="submit" class="btn btn-success px-4" style="background-color: #0a6b4a; border: none;">Simpan Paket</button>
                         </div>
-                        <button type="submit" class="btn btn-success px-4" style="background-color: #0a6b4a; border: none;">Simpan Paket</button>
-                        <a href="<?= base_url('admin'); ?>" class="btn btn-secondary">Batal</a>
                     </form>
                 </div>
             </div>

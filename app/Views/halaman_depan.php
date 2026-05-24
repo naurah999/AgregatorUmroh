@@ -193,37 +193,7 @@
                 </form>
             </div>
         </div>
-        <!-- Biro Travel Section -->
-        <section id="biro-travel" class="py-5">
-            <h4 class="fw-bold mb-2 text-dark"><i class="fas fa-building text-success me-2" style="color: #0b5345 !important;"></i>Biro Travel Resmi Jawa Timur</h4>
-            <p class="text-muted small mb-4">Pilih biro travel untuk melihat profil legalitas dan daftar paket khusus yang mereka sediakan.</p>
-            
-            <div class="row row-cols-2 row-cols-md-4 g-3">
-                <?php foreach ($travel as $t) : ?>
-                    <div class="col">
-                        <a href="/travel/<?= $t['id']; ?>" class="text-decoration-none">
-                            <div class="card h-100 text-center border-0 shadow-sm p-3 bg-white" style="border-radius: 12px; transition: transform 0.2s;">
-                                <div class="card-body p-2">
-                                    <div class="mb-3 mx-auto d-flex align-items-center justify-content-center bg-light text-success rounded-circle" style="width: 60px; height: 60px;">
-                                        <i class="fas fa-mosque fa-lg" style="color: #0b5345;"></i>
-                                    </div>
-                                    <h6 class="fw-bold text-dark mb-1"><?= esc($t['nama_travel']); ?></h6>
-                                    <span class="badge bg-secondary-subtle text-secondary px-2 py-1" style="font-size: 0.75rem;">
-                                        <i class="fas fa-map-marker-alt me-1"></i><?= esc($t['kota_asal']); ?>
-                                    </span>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                <?php endforeach; ?>
-            </div>
-        </section>
-
-        <hr class="my-5 opacity-25">
-
-        
-
-    <section id="paket-rekomendasi" class="py-5 bg-light">
+        <section id="paket-rekomendasi" class="py-5 bg-light">
         <h4 class="fw-bold mb-4" style="color: #0b5345;"><i class="fas fa-box-open me-2"></i>Rekomendasi Paket Umroh Tersedia</h4>
         <div class="container">
         <div class="row g-4">       
@@ -267,10 +237,38 @@
             <?php endforeach; ?>
 
         </div>
-    </section>
+        </section>
+
+    <!-- Biro Travel Section -->
+        <section id="biro-travel" class="py-5">
+            <h4 class="fw-bold mb-2 text-dark"><i class="fas fa-building text-success me-2" style="color: #0b5345 !important;"></i>Biro Travel Resmi Jawa Timur</h4>
+            <p class="text-muted small mb-4">Pilih biro travel untuk melihat profil legalitas dan daftar paket khusus yang mereka sediakan.</p>
+            
+            <div class="row row-cols-2 row-cols-md-4 g-3">
+                <?php foreach ($travel as $t) : ?>
+                    <div class="col">
+                        <a href="/travel/<?= $t['id']; ?>" class="text-decoration-none">
+                            <div class="card h-100 text-center border-0 shadow-sm p-3 bg-white" style="border-radius: 12px; transition: transform 0.2s;">
+                                <div class="card-body p-2">
+                                    <div class="mb-3 mx-auto d-flex align-items-center justify-content-center bg-light text-success rounded-circle" style="width: 60px; height: 60px;">
+                                        <i class="fas fa-mosque fa-lg" style="color: #0b5345;"></i>
+                                    </div>
+                                    <h6 class="fw-bold text-dark mb-1"><?= esc($t['nama_travel']); ?></h6>
+                                    <span class="badge bg-secondary-subtle text-secondary px-2 py-1" style="font-size: 0.75rem;">
+                                        <i class="fas fa-map-marker-alt me-1"></i><?= esc($t['kota_asal']); ?>
+                                    </span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+        </section>
+
+        <hr class="my-5 opacity-25">
     </div>
     <!-- Keunggulan Section -->
-    <section class="py-5 bg-light border-top border-bottom mt-5>"
+    <section class="py-5 bg-light border-top border-bottom mt-5">
     <div class="container">
         <div class="row text-center g-4">
 

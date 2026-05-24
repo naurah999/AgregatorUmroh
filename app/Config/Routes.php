@@ -25,6 +25,7 @@ $routes->get('/admin/hapus/(:num)', 'Admin::hapus/$1');
 $routes->get('/admin/paket_edit', 'Admin::paket_edit'); 
 $routes->get('/admin/paket_edit/(:num)', 'Admin::paket_edit/$1'); 
 $routes->post('/admin/update/(:num)', 'Admin::update/$1');
+$routes->get('/detail_paket/(:num)', 'Home::detail_paket/$1');
 
 // Panel Admin (Travel)
 $routes->get('/admin/travel', 'Admin::travel_index');

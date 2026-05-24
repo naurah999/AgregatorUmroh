@@ -56,6 +56,15 @@
                                 <option value="5" <?= old('hotel_bintang', $paket['hotel_bintang'] ) == 5 ? 'selected' : '' ?>>Bintang 5</option>
                             </select>
                         </div>
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Maskapai Penerbangan</label>
+                            <input type="text" name="maskapai" class="form-control" value="<?= esc($paket['maskapai']); ?>" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Kota Keberangkatan</label>
+                            <input type="text" name="kota_keberangkatan" class="form-control" value="<?= esc($paket['kota_keberangkatan']); ?>" required>
+                        </div>
 
                         <div class="mb-4">
                             <label class="form-label fw-bold">Fasilitas Sudah Termasuk (Includes)</label>

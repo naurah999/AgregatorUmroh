@@ -53,6 +53,8 @@ class Admin extends BaseController
             'durasi'        => $this->request->getPost('durasi'),
             'hotel_bintang' => $this->request->getPost('hotel_bintang'),
             'includes'      => $this->request->getPost('includes'), 
+            'maskapai'           => $this->request->getPost('maskapai'),
+            'kota_keberangkatan' => $this->request->getPost('kota_keberangkatan'),
         ]);
 
         return redirect()->to('/admin')->with('success', 'Data paket umroh berhasil ditambahkan!');
@@ -109,6 +111,8 @@ class Admin extends BaseController
             'durasi'        => $this->request->getPost('durasi'),
             'hotel_bintang' => $this->request->getPost('hotel_bintang'),
             'includes'      => $this->request->getPost('includes'), // Menyimpan fasilitas/includes yang baru diketik
+            'maskapai'           => $this->request->getPost('maskapai'),
+            'kota_keberangkatan' => $this->request->getPost('kota_keberangkatan'),
         ]);
 
         // Kembali ke halaman admin dengan membawa NOTIFIKASI BERHASIL
