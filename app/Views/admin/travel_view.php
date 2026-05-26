@@ -60,10 +60,10 @@
 
                         <td class="text-center">
                             <button class="btn btn-sm btn-warning rounded-pill px-3 me-1" data-bs-toggle="modal" data-bs-target="#modalEdit<?= $t['id']; ?>">Edit</button>
-                            <a href="<?= base_url('admin/travel/hapus/' . $t['id']); ?>" class="btn btn-sm btn-danger rounded-pill px-3" onclick="return confirm('Yakin ingin menghapus?')">Hapus</a>
+                            <a href="<?= base_url('admin/travel/hapus/' . $t['id']); ?>" class="btn btn-sm btn-danger rounded-pill px-3" onclick="return confirm('Yakin ingin menghapus?')">Hapus</a> 
                         </td>
                     </tr>
-                    <!-- Modal Edit per Baris -->
+                    <!-- Modal Edit per Baris --> 
                     <div class="modal fade" id="modalEdit<?= $t['id']; ?>" tabindex="-1">
                         <div class="modal-dialog">
                             <div class="modal-content">
@@ -104,7 +104,7 @@
                     </div>
 
                     <?php endforeach; ?>
-                </tbody>
+                </tbody> 
             </table>
         </div>
     </div>

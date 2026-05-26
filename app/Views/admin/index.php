@@ -32,14 +32,13 @@
         <span class="navbar-brand fw-bold"><i class="fas fa-user-shield me-2"></i>Panel Admin - Agregator</span>
         <div class="d-flex">
             <a href="<?= base_url('admin'); ?>" class="btn btn-warning btn-sm me-2"><i class="fas fa-box"></i> Kelola Paket</a>
-            <a href="<?= base_url('admin/travel'); ?>" class="btn btn-outline-light btn-sm me-3"><i class="fas fa-building"></i> Kelola Travel</a>
+            <a href="<?= base_url('admin/travel'); ?>" class="btn btn-outline-light btn-sm me-2"><i class="fas fa-building"></i> Kelola Travel</a>
             <a href="<?= base_url('/'); ?>" class="btn btn-sm btn-success"><i class="fas fa-globe"></i> Lihat Web</a>
         </div>
     </div>
 </nav>
 
-<div class="container">
-    <div class="card card-admin p-4">
+<div class="container-fluid px-4"> <div class="card card-admin p-4">
         <div class="d-flex justify-content-between align-items-center mb-4">
             <h5 class="fw-bold mb-0">Kelola Paket Umroh</h5>
             <a href="<?= base_url('admin/tambah'); ?>" class="btn btn-tambah shadow-sm">
@@ -51,26 +50,39 @@
             <table class="table table-striped table-bordered align-middle">
                 <thead class="table-dark">
                     <tr>
-                        <th width="5%">No</th>
+                        <th width="3%" class="text-center">No</th>
                         <th>Nama Paket</th>
                         <th>Nama Biro Travel</th>
                         <th>Harga (Rp)</th>
-                        <th>Durasi</th>
+                        <th>Keberangkatan</th> <th>Durasi</th>
                         <th>Bintang</th>  
                         <th>Maskapai</th>
-                        <th>kota keberangkatan</th>
+                        <th>Kota Asal</th>
                         <th>Fasilitas</th>
-                        <th width="15%">Aksi</th>
+                        <th width="12%" class="text-center">Aksi</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody> 
                 <?php $no = 1; foreach($paket as $p): ?>
                 <tr>
-                    <td><?= $no++; ?></td>
+                    <td class="text-center"><?= $no++; ?></td>
                     <td>
-                        <strong><?= $p['nama_paket']; ?></strong></td>
+                        <strong><?= $p['nama_paket']; ?></strong>
+                    </td>
                     <td><?= isset($p['nama_travel']) ? $p['nama_travel'] : '-'; ?></td>
-                    <td>Rp <?= number_format($p['harga'], 0, ',', '.'); ?></td>
+                    <td><span class="badge-harga">Rp <?= number_format($p['harga'], 0, ',', '.'); ?></span></td> 
+                    
+                    <td>
+                        <?php if(!empty($p['tanggal_keberangkatan'])): ?>
+                            <span class="badge bg-info text-dark fw-bold">
+                                <i class="fas fa-calendar-day me-1"></i> 
+                                <?= date('d-m-Y', strtotime($p['tanggal_keberangkatan'])); ?>
+                            </span>
+                        <?php else: ?>
+                            <span class="badge bg-secondary">Belum Diatur</span>
+                        <?php endif; ?>
+                    </td>
+
                     <td><?= $p['durasi']; ?> Hari</td>
                     <td>
                         <?php 
@@ -84,16 +96,18 @@
                     <td><?= $p['kota_keberangkatan']; ?></td> 
                     <td>
                         <small class="text-muted">
-                            <?= !empty($p['includes']) ? mb_strimwidth(str_replace("\n", ", ", $p['includes']), 0, 40, "...") : '-'; ?>
+                            <?= !empty($p['includes']) ? mb_strimwidth(str_replace("\n", ", ", $p['includes']), 0, 30, "...") : '-'; ?>
                         </small>
                     </td>
-                    <td>
-                        <a href="<?= base_url('admin/paket_edit/' . $p['id']); ?>" class="btn btn-warning btn-sm fw-bold px-3">Edit</a>
-                        <a href="#" class="btn btn-sm text-white fw-bold btn-hapus-custom" 
-                           data-url="<?= base_url('admin/hapus/' . $p['id']); ?>" 
-                           style="background-color: #dc3545;">
-                            Hapus
-                        </a>
+                    <td class="text-center">
+                        <div class="d-flex gap-1 justify-content-center">
+                            <a href="<?= base_url('admin/paket_edit/' . $p['id']); ?>" class="btn btn-warning btn-sm fw-bold px-2"><i class="fas fa-edit"></i> Edit</a>
+                            <a href="#" class="btn btn-sm text-white fw-bold btn-hapus-custom px-2" 
+                               data-url="<?= base_url('admin/hapus/' . $p['id']); ?>" 
+                               style="background-color: #dc3545;">
+                                <i class="fas fa-trash"></i> Hapus
+                            </a>
+                        </div>
                     </td>
                 </tr>
                 <?php endforeach; ?>
@@ -102,8 +116,8 @@
         </div>
     </div>
 </div>
-<!-- Toast Success -->
-<?php if (session()->getFlashdata('success')) : ?>
+
+<?php if (session()->getFlashdata('success')) : ?> 
     <div class="toast-container-custom">
         <div id="successToast" class="toast-custom">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
@@ -125,7 +139,7 @@
         });
     </script>
 <?php endif; ?>
-<!-- Modal Konfirmasi Hapus -->
+
 <div class="modal fade" id="konfirmasiHapusModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" style="max-width: 400px;">
         <div class="modal-content" style="border-radius: 12px; border: none; box-shadow: 0 4px 20px rgba(0,0,0,0.15);">
@@ -150,7 +164,7 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {
-        const tombolHapus = document.querySelectorAll('.btn-hapus-custom');
+        const tombolHapus = document.querySelectorAll('.btn-hapus-custom'); 
         const modalHapus = new bootstrap.Modal(document.getElementById('konfirmasiHapusModal'));
         const linkEksekusi = document.getElementById('tombolEksekusiHapus');
 

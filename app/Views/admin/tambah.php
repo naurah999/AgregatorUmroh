@@ -14,12 +14,12 @@
                     <h4 class="mb-0 fw-bold fs-5">Form Tambah Paket</h4>
                 </div>
                 <div class="card-body p-4">
-                    <form action="<?= base_url('admin/simpan'); ?>" method="post">
+                    <form action="<?= base_url('admin/simpan'); ?>" method="post"> 
                         <div class="mb-3">
                             <label class="form-label fw-bold">Nama Travel / Penyelenggara</label>
                             <select name="travel_id" class="form-select" required>
                                 <option value="">-- Pilih Biro Travel --</option>
-                                <?php foreach ($travel as $t): ?>
+                                <?php foreach ($travel as $t): ?> 
                                     <option value="<?= $t['id']; ?>" <?= old('travel_id') == $t['id'] ? 'selected' : ''; ?>>
                                         <?= $t['nama_travel']; ?>
                                     </option>
@@ -28,11 +28,11 @@
                         </div>
                         <div class="mb-3">
                             <label class="form-label fw-bold">Nama Paket</label>
-                            <input type="text" name="nama_paket" class="form-control" value="<?= old('nama_paket'); ?>" required>
+                            <input type="text" name="nama_paket" class="form-control" value="<?= old('nama_paket'); ?>" required> 
                         </div>
                         <div class="mb-3">
                             <label class="form-label fw-bold">Harga (Angka saja)</label>
-                            <input type="number" name="harga" class="form-control" value="<?= old('harga'); ?>" required>
+                            <input type="number" name="harga" class="form-control" value="<?= old('harga'); ?>" required> 
                         </div>
                         <div class="mb-3">
                             <label class="form-label fw-bold">Durasi (Hari)</label>
@@ -46,6 +46,13 @@
                                 <option value="5" <?= old('hotel_bintang') == 5 ? 'selected' : ''; ?>>Bintang 5</option>
                             </select>
                         </div>
+
+                        <div class="mb-3">
+                            <label class="form-label fw-bold text-success">Tanggal Keberangkatan (Hari, Bulan, Tahun)</label>
+                            <input type="date" name="tanggal_keberangkatan" class="form-control" value="<?= old('tanggal_keberangkatan'); ?>" required>
+                            <small class="text-muted">Klik ikon kalender untuk memilih tanggal penyerahan jadwal manifes.</small>
+                        </div>
+
                         <div class="mb-3">
                             <label class="form-label fw-bold">Maskapai Penerbangan</label>
                             <input type="text" name="maskapai" class="form-control" placeholder="Contoh: Saudi Arabian Airlines" required>
@@ -55,7 +62,7 @@
                             <input type="text" name="kota_keberangkatan" class="form-control" placeholder="Contoh: Juanda, Surabaya" required>
                         </div>
                         <div class="mb-4">
-                            <label for="includes" class="form-label fw-bold">Fasilitas Sudah Termasuk (Includes)</label>
+                            <label class="form-label fw-bold" for="includes">Fasilitas Sudah Termasuk (Includes)</label>
                             <textarea class="form-control" id="includes" name="includes" rows="4" placeholder="Contoh: Tiket Pesawat PP, Visa Umroh, Makan 3x Sehari (Gunakan baris baru/enter untuk memisahkan)"><?= old('includes'); ?></textarea>
                         </div>
                         <div class="d-flex justify-content-end">

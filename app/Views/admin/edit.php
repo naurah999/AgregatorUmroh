@@ -19,23 +19,23 @@
                 </div>
                 
                 <div class="card-body p-4">
-                    <form action="<?= base_url('admin/update/' . $paket['id']); ?>" method="post">
+                    <form action="<?= base_url('admin/update/' . $paket['id']); ?>" method="post"> 
                         
                         <div class="mb-3">
                             <label class="form-label fw-bold">Nama Travel / Penyelenggara</label>
                             <select name="travel_id" class="form-select" required>
                                 <option value="">-- Pilih Biro Travel --</option>
                                 <?php foreach ($travel as $t): ?>
-                                    <option value="<?= $t['id']; ?>" <?= $t['id'] == $paket['travel_id'] ? 'selected' : ''; ?>>
+                                    <option value="<?= $t['id']; ?>" <?= $t['id'] == $paket['travel_id'] ? 'selected' : ''; ?>> 
                                         <?= $t['nama_travel']; ?>
                                     </option>
                                 <?php endforeach; ?>
                             </select>
                         </div>
-                                                                
+                                                                                
                         <div class="mb-3">
                             <label class="form-label fw-bold">Nama Paket</label>
-                            <input type="text" name="nama_paket" class="form-control" value="<?= old('nama_paket', $paket['nama_paket']); ?>" required>
+                            <input type="text" name="nama_paket" class="form-control" value="<?= old('nama_paket', $paket['nama_paket']); ?>" required> 
                         </div>
                         
                         <div class="mb-3">
@@ -56,9 +56,16 @@
                                 <option value="5" <?= old('hotel_bintang', $paket['hotel_bintang'] ) == 5 ? 'selected' : '' ?>>Bintang 5</option>
                             </select>
                         </div>
+
+                        <div class="mb-3">
+                            <label class="form-label fw-bold text-success">Tanggal Keberangkatan (Hari, Bulan, Tahun)</label>
+                            <input type="date" name="tanggal_keberangkatan" class="form-control" value="<?= old('tanggal_keberangkatan', $paket['tanggal_keberangkatan'] ?? ''); ?>" required>
+                            <small class="text-muted">Atur ulang tanggal jika terdapat penyesuaian jadwal dari pihak maskapai penerbangan.</small>
+                        </div>
+
                         <div class="mb-3">
                             <label class="form-label fw-bold">Maskapai Penerbangan</label>
-                            <input type="text" name="maskapai" class="form-control" value="<?= esc($paket['maskapai']); ?>" required>
+                            <input type="text" name="maskapai" class="form-control" value="<?= esc($paket['maskapai']); ?>" required> 
                         </div>
 
                         <div class="mb-3">

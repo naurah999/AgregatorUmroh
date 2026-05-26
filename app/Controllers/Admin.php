@@ -55,6 +55,7 @@ class Admin extends BaseController
             'includes'      => $this->request->getPost('includes'), 
             'maskapai'           => $this->request->getPost('maskapai'),
             'kota_keberangkatan' => $this->request->getPost('kota_keberangkatan'),
+            'tanggal_keberangkatan' => $this->request->getPost('tanggal_keberangkatan'),
         ]);
 
         return redirect()->to('/admin')->with('success', 'Data paket umroh berhasil ditambahkan!');
@@ -113,6 +114,7 @@ class Admin extends BaseController
             'includes'      => $this->request->getPost('includes'), // Menyimpan fasilitas/includes yang baru diketik
             'maskapai'           => $this->request->getPost('maskapai'),
             'kota_keberangkatan' => $this->request->getPost('kota_keberangkatan'),
+            'tanggal_keberangkatan' => $this->request->getPost('tanggal_keberangkatan'),
         ]);
 
         // Kembali ke halaman admin dengan membawa NOTIFIKASI BERHASIL
@@ -168,4 +170,5 @@ class Admin extends BaseController
         $travelModel->delete($id);
         return redirect()->to('/admin/travel')->with('success', 'Data travel berhasil dihapus!');
     }
+
 }

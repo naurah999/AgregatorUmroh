@@ -6,7 +6,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <style>
+    <style> //4
         body { font-family: 'Poppins', sans-serif; background-color: #f8f9fa; min-height: 100vh; display: flex; align-items: center; }
         .login-container { max-width: 1000px; background: white; border-radius: 24px; box-shadow: 0 10px 40px rgba(0,0,0,0.04); overflow: hidden; padding: 40px; }
         .text-brand { color: #0b5345; font-weight: 700; }
@@ -24,7 +24,7 @@
     <div class="row align-items-center g-5">
         
         <div class="col-lg-6 d-none d-lg-block">
-            <h3 class="fw-bold mb-4" style="color: #0b5345;">Mengapa di UmrohJatim.com?</h3>
+            <h3 class="fw-bold mb-4" style="color: #0b5345;">Mengapa di qalb.id - Agregator Umroh Jawa Timur?</h3>
             
             <div class="d-flex align-items-start mb-4">
                 <div class="feature-icon me-3 shadow-sm">

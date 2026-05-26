@@ -9,7 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
-    <style>
+    <style> //1
         html {
         scroll-behavior: smooth; /* Membuat efek scroll meluncur dengan halus */
         scroll-padding-top: 80px; /* Biar judul section tidak tertutup oleh navbar yang melayang */
@@ -120,7 +120,7 @@
     <nav class="navbar navbar-expand-lg navbar-dark sticky-top" style="background-color: #0b5345;">
     <div class="container">
         <a class="navbar-brand fw-bold" href="/">
-            <i class="fas fa-kaaba text-warning me-2"></i>UmrohJatim.com
+            <i class="fas fa-kaaba text-warning me-2"></i>Qalb.id - Agregator Umroh Jawa Timur 
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -132,7 +132,7 @@
                 <a class="nav-link active" href="/">Beranda</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#biro-travel">Mitra Biro</a>
+                <a class="nav-link" href="#biro-travel">Daftar Travel</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#paket-rekomendasi">Rekomendasi Paket</a>
@@ -319,21 +319,14 @@
     <div class="container text-md-left">
         <div class="row text-md-left">
             <div class="col-md-4 col-lg-4 col-xl-4 mx-auto mt-3">
-                <h5 class="text-uppercase mb-4 font-weight-bold text-warning fw-bold">UmrohJatim.com</h5>
+                <h5 class="text-uppercase mb-4 font-weight-bold text-warning fw-bold">Tentang Kami</h5>
                 <p class="small opacity-75">Platform agregator umroh nomor satu di Jawa Timur. Kami membantu calon jamaah menemukan paket ibadah terbaik yang aman, berizin resmi Kemenag, dan sesuai dengan budget keluarga.</p>
-            </div>
-
-            <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
-                <h5 class="text-uppercase mb-4 font-weight-bold text-warning fw-bold">Navigasi</h5>
-                <p class="mb-2"><a href="/" class="text-white text-decoration-none small opacity-75">Tentang Kami</a></p>
-                <p class="mb-2"><a href="/" class="text-white text-decoration-none small opacity-75">Syarat & Ketentuan</a></p>
-                <p class="mb-2"><a href="/" class="text-white text-decoration-none small opacity-75">Bantuan Jamaah</a></p>
             </div>
 
             <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
                 <h5 class="text-uppercase mb-4 font-weight-bold text-warning fw-bold">Kontak Layanan</h5>
-                <p class="small mb-2 opacity-75"><i class="fas fa-home me-2"></i> Gedung Pusat, Jl. Ahmad Yani No. 12, Surabaya</p>
-                <p class="small mb-2 opacity-75"><i class="fas fa-envelope me-2"></i> bantuan@umrohjatim.com</p>
+                <p class="small mb-2 opacity-75"><i class="fas fa-home me-2"></i> Gedung Pusat, Jl. Gunung Anyar No. 12, Surabaya</p>
+                <p class="small mb-2 opacity-75"><i class="fas fa-envelope me-2"></i> qalb@umrohjatim.com</p>
                 <p class="small mb-2 opacity-75"><i class="fas fa-phone me-2"></i> +62 821-1135-7776</p>
             </div>
         </div>
